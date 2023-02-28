@@ -66,14 +66,25 @@ public class FrmVentana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void BtnCapturarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-    int num;    
-        
-        if(cont<n){
-            num = Integer.parseInt(JOptionPane.showInputDialog(null, "Escribe un valor"));
-            lista[cont] = num;
-            cont++;
-        }
+private void imprimirLista(){
+    String cadena="";
+    
+    for (int i = 0; i < cont; i++) {
+        cadena = cadena + lista[i] +"\n";
+        txaLista.setText(cadena);
+    }
+}   
+   
+   private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {                                            
+  int num;
+  
+    if(cont<n){
+           num = Integer.parseInt(JOptionPane.showInputDialog(null, "Escribe un valor"));
+           lista[cont] = num;
+           cont++;
+           imprimirLista();
+       }else
+           JOptionPane.showMessageDialog(null, "Espacio agotado");
     }                                           
 
     /**
