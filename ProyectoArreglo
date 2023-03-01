@@ -74,6 +74,16 @@ private void imprimirLista(){
         txaLista.setText(cadena);
     }
 }   
+private void calcularPromedio(){
+        int i;
+        double suma = 0;
+        
+        for (i = 0;  i< cont; i++) {
+            suma = suma + lista[i];
+            //txaLista.setText(suma/cont + "");
+            txaLista.append(suma/cont + "");
+        }
+    }
    
    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {                                            
   int num;
@@ -83,6 +93,8 @@ private void imprimirLista(){
            lista[cont] = num;
            cont++;
            imprimirLista();
+           txaLista.append("________________\n");
+       calcularPromedio();
        }else
            JOptionPane.showMessageDialog(null, "Espacio agotado");
     }                                           
