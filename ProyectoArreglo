@@ -1,11 +1,6 @@
+package proyectoarreglo;
 
 import javax.swing.JOptionPane;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -14,15 +9,15 @@ import javax.swing.JOptionPane;
 public class FrmVentana extends javax.swing.JFrame {
 
     /**
-     * Creates new form ProyectoArreglo
+     * Creates new form FrmVentana
      */
-     int n, cont;
-        int lista[]; //Declaración del arreglo
-        
+    int lista[]; // DECLARACION DEL ARREGLO
+    byte n, cont;
+
     public FrmVentana() {
-        n=5;
-        cont=0;
-        lista=new int[n];
+        cont = 0;
+        n = 5;
+        lista = new int[n]; // RESERVA DE MEMORIA
         initComponents();
     }
 
@@ -35,68 +30,83 @@ public class FrmVentana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        BtnCapturar = new javax.swing.JButton();
+        btnCapturar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaLista = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BtnCapturar.setText("Capturar");
-        BtnCapturar.addActionListener(new java.awt.event.ActionListener() {
+        btnCapturar.setText("Capturar");
+        btnCapturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCapturarActionPerformed(evt);
+                btnCapturarActionPerformed(evt);
             }
         });
+
+        txaLista.setEditable(false);
+        txaLista.setColumns(20);
+        txaLista.setRows(5);
+        jScrollPane1.setViewportView(txaLista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(BtnCapturar)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(btnCapturar)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(BtnCapturar)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE)
+                .addComponent(btnCapturar)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>                        
 
-private void imprimirLista(){
-    String cadena="";
-    
-    for (int i = 0; i < cont; i++) {
-        cadena = cadena + lista[i] +"\n";
-        txaLista.setText(cadena);
-    }
-}   
-private void calcularPromedio(){
-        int i;
-        double suma = 0;
+    private void imprimirLista(){
+      String cadena = "   ";  
         
-        for (i = 0;  i< cont; i++) {
-            suma = suma + lista[i];
-            //txaLista.setText(suma/cont + "");
-            txaLista.append(suma/cont + "");
+        for (int i = 0; i < cont; i++) {
+          cadena = cadena + lista[i] + "\n   ";
+        txaLista.setText(cadena);  
         }
     }
-   
-   private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {                                            
-  int num;
-  
-    if(cont<n){
-           num = Integer.parseInt(JOptionPane.showInputDialog(null, "Escribe un valor"));
-           lista[cont] = num;
-           cont++;
-           imprimirLista();
-           txaLista.append("________________\n");
-       calcularPromedio();
-       }else
-           JOptionPane.showMessageDialog(null, "Espacio agotado");
+    
+    private void calcularPromedio(){
+      float suma = 0;   
+        
+        for (int i = 0; i < cont; i++)
+          suma = suma + lista[i];
+          txaLista.append("El promedio es: " + suma/cont + "");
+    }
+    
+    private void btnCapturarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+      int num;
+      
+        if(cont < n){
+          num = Integer.parseInt(JOptionPane.showInputDialog(null, "Escribe un valor: "));
+          lista[cont] = num;
+          cont++;
+          
+          imprimirLista();
+          txaLista.append("--------------\n");
+          calcularPromedio();
+        }else{
+            JOptionPane.showMessageDialog(null,"No hay lugar en el arreglo");
+        }
+        
     }                                           
 
     /**
@@ -125,7 +135,6 @@ private void calcularPromedio(){
             java.util.logging.Logger.getLogger(FrmVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -136,6 +145,8 @@ private void calcularPromedio(){
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton BtnCapturar;
+    private javax.swing.JButton btnCapturar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txaLista;
     // End of variables declaration                   
 }
