@@ -69,4 +69,11 @@ public String obtenerElementos(){
             cadena+=lista[i];
     return cadena;
 }
+public boolean borrarElementos(){
+    if(numElem>0){
+        numElem--;
+    }
+    return false;
+}
+
 }
