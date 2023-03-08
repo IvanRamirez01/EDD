@@ -50,5 +50,23 @@ public void setTamaño(byte tamaño){
   this.tamaño = tamaño;
 }
 
+public boolean agregarElemento(String valor){
+    if(numElem < tamaño){
+        lista[numElem] = valor;
+        numElem++;
+        return true;
+    }else
+        return false;
+}
 
+public String obtenerElementos(){
+    String cadena = "";
+    
+    for(byte i=0;i<numElem;i++)
+        if(i<numElem-1)
+            cadena+=lista[i] + ", \n";
+        else
+            cadena+=lista[i];
+    return cadena;
+}
 }
