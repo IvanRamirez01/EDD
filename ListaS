@@ -11,4 +11,23 @@ package proyectolistasimple;
  */
 public class ListaS {
     NodoS inicio;
+    
+public ListaS(){
+    inicio=null;
+    
+    }
+public void agregarElementoFinal(byte dato){
+    NodoS nuevo=new NodoS(dato);
+    if(inicio==null)
+        inicio=nuevo;
+    else
+        if(inicio.getSigui()==null)
+            inicio.setSigui(nuevo);
+        else{
+            NodoS aux=inicio;
+            while(aux.getSigui()!=null)
+                aux=aux.getSigui();
+                aux.setSigui(nuevo);
+        }
+}
 }
